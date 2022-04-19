@@ -1,4 +1,4 @@
-$url = "https://discord.com/api/webhooks/960492664397131816/2I0hpRTNIrzZCiUwkmZ76-gJ7AHAIvr9nFFdV2oVBWUM7l8t3dT3_wX7iS1S0NoaSOSn"
+$url = "https://discord.com/api/webhooks/965959164440481842/NzKBTgEAYJ3Y6m-LOPY89ZshFQ4OPY_GKN-DfNHroQyfEviGvT3X_6ybntF2S7jaBj1m"
 
 try {
     do {       
