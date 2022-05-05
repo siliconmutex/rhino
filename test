@@ -1,1 +1,1 @@
-get-process *
+start-process calc.exe
